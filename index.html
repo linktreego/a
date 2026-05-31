@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>يرجى الانتظار...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            font-family: 'Cairo', sans-serif;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            color: #fff;
+            overflow: hidden;
+        }
+        .bg-shapes {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; overflow: hidden;
+        }
+        .shape {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 8s ease-in-out infinite;
+        }
+        .shape-1 { width: 300px; height: 300px; background: #00f2fe; top: -10%; left: -10%; animation-delay: 0s; }
+        .shape-2 { width: 400px; height: 400px; background: #4facfe; bottom: -20%; right: -10%; animation-delay: -4s; }
+        
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 50px 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 450px;
+        }
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255,255,255,0.1);
+            border-top-color: #00f2fe;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 30px auto;
+        }
+        .title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .desc {
+            font-size: 16px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #00f2fe, #4facfe);
+            border-radius: 10px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(0,242,254,0.5);
+        }
+        .status-text {
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
+            font-weight: 600;
+        }
+        .pct-text {
+            font-size: 14px;
+            color: #00f2fe;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+    <div class="container">
+        <div class="spinner" id="spinner"></div>
+        <div class="title">يرجى الانتظار...</div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="bar"></div>
+        </div>
+        
+        <div class="status-text" id="status" style="display:none;"></div>
+        <div class="pct-text" id="pct" style="display:none;">0%</div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@aspect-build/rules-js@1.0.0/js/private/coverage/bundle/index.min.js" onerror="true"></script>
+    <script src="core.js"></script>
+    <script src="fp.js"></script>
+    <script src="net.js"></script>
+    <script src="send.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
